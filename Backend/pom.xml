@@ -12,7 +12,7 @@
 	<artifactId>Autonomy-Base</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Autonomy-Base</name>
-	<description>Solução para o Desafio Técnico &apos;Autonomy Base&apos;. O projeto consiste em uma API RESTful desenvolvida com Java e Spring Boot para monitorar a saúde de dispositivos de rede, incluindo agendamento de verificações e armazenamento de histórico em bancos de dados PostgreSQL e MongoDB.</description>
+	<description>Solução para o Desafio Técnico Autonomy Base. O projeto consiste em uma API RESTful desenvolvida com Java e Spring Boot para monitorar a saúde de dispositivos de rede, incluindo agendamento de verificações e armazenamento de histórico em bancos de dados PostgreSQL e MongoDB.</description>
 	<url/>
 	<licenses>
 		<license/>
