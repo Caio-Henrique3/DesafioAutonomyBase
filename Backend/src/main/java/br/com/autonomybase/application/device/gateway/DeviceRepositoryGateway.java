@@ -12,5 +12,7 @@ public interface DeviceRepositoryGateway {
 
     Optional<DeviceModel> findById(UUID id);
 
+    DeviceModel save(DeviceModel deviceModel);
+
 }
 

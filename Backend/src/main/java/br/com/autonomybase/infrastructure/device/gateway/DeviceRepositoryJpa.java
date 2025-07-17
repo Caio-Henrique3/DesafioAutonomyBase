@@ -31,4 +31,13 @@ public class DeviceRepositoryJpa implements DeviceRepositoryGateway {
                 .map(DeviceMapper::toDomain);
     }
 
+    @Override
+    public DeviceModel save(DeviceModel deviceModel) {
+        return DeviceMapper.toDomain(
+                springRepo.save(
+                        DeviceMapper.toEntity(deviceModel)
+                )
+        );
+    }
+
 }
