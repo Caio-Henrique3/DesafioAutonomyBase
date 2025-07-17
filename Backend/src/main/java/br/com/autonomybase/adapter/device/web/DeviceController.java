@@ -5,6 +5,7 @@ import br.com.autonomybase.adapter.device.web.dto.DeviceResponse;
 import br.com.autonomybase.application.device.usecase.GetDeviceUseCase;
 import br.com.autonomybase.application.device.usecase.ListDevicesUseCase;
 import br.com.autonomybase.application.device.usecase.RegisterDeviceUseCase;
+import br.com.autonomybase.application.device.usecase.UpdateDeviceUseCase;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ public class DeviceController {
 
     private final GetDeviceUseCase getDeviceUseCase;
     private final ListDevicesUseCase listDevicesUseCase;
+    private final UpdateDeviceUseCase updateDeviceUseCase;
     private final RegisterDeviceUseCase registerDeviceUseCase;
 
     @GetMapping
@@ -45,6 +47,21 @@ public class DeviceController {
                 .toUri();
 
         return ResponseEntity.created(uri).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> update(@PathVariable UUID id,
+                                       @Valid @RequestBody DeviceRequest request) {
+        updateDeviceUseCase.execute(id, request);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/status/{id}")
+    public ResponseEntity<Void> updateStatus(@PathVariable UUID id) {
+        updateDeviceUseCase.execute(id);
+
+        return ResponseEntity.noContent().build();
     }
 
 }
