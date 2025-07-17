@@ -1,10 +1,7 @@
 package br.com.autonomybase.infrastructure.device.config;
 
 import br.com.autonomybase.application.device.gateway.DeviceRepositoryGateway;
-import br.com.autonomybase.application.device.usecase.GetDeviceUseCase;
-import br.com.autonomybase.application.device.usecase.ListDevicesUseCase;
-import br.com.autonomybase.application.device.usecase.RegisterDeviceUseCase;
-import br.com.autonomybase.application.device.usecase.UpdateDeviceUseCase;
+import br.com.autonomybase.application.device.usecase.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -29,6 +26,11 @@ public class DeviceConfig {
     @Bean
     public UpdateDeviceUseCase updateDeviceUseCase(DeviceRepositoryGateway deviceRepository) {
         return new UpdateDeviceUseCase(deviceRepository);
+    }
+
+    @Bean
+    public DeleteDeviceUseCase deleteDeviceUseCase(DeviceRepositoryGateway deviceRepository) {
+        return new DeleteDeviceUseCase(deviceRepository);
     }
 
 }

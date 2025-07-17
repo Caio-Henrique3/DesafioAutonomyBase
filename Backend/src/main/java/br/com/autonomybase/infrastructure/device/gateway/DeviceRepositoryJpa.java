@@ -40,4 +40,9 @@ public class DeviceRepositoryJpa implements DeviceRepositoryGateway {
         );
     }
 
+    @Override
+    public void deleteById(UUID id) {
+        springRepo.deleteById(id);
+    }
+
 }

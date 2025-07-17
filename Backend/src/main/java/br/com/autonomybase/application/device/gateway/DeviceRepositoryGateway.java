@@ -14,5 +14,7 @@ public interface DeviceRepositoryGateway {
 
     DeviceModel save(DeviceModel deviceModel);
 
+    void deleteById(UUID id);
+
 }
 
