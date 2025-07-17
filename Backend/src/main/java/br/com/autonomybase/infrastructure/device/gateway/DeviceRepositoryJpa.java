@@ -4,6 +4,7 @@ import br.com.autonomybase.application.device.gateway.DeviceRepositoryGateway;
 import br.com.autonomybase.domain.device.model.DeviceModel;
 import br.com.autonomybase.infrastructure.device.persistence.mapper.DeviceMapper;
 import br.com.autonomybase.infrastructure.device.persistence.repository.DeviceRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -15,11 +16,11 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class DeviceRepositoryJpa implements DeviceRepositoryGateway {
 
-    private final DeviceRepository springRepo;
+    private final DeviceRepository repository;
 
     @Override
     public List<DeviceModel> findAll() {
-        return springRepo.findAll()
+        return repository.findAll()
                 .stream()
                 .map(DeviceMapper::toDomain)
                 .toList();
@@ -27,22 +28,24 @@ public class DeviceRepositoryJpa implements DeviceRepositoryGateway {
 
     @Override
     public Optional<DeviceModel> findById(UUID id) {
-        return springRepo.findById(id)
+        return repository.findById(id)
                 .map(DeviceMapper::toDomain);
     }
 
     @Override
+    @Transactional
     public DeviceModel save(DeviceModel deviceModel) {
         return DeviceMapper.toDomain(
-                springRepo.save(
+                repository.save(
                         DeviceMapper.toEntity(deviceModel)
                 )
         );
     }
 
     @Override
+    @Transactional
     public void deleteById(UUID id) {
-        springRepo.deleteById(id);
+        repository.deleteById(id);
     }
 
 }
