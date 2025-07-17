@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 @RequiredArgsConstructor
@@ -21,6 +23,12 @@ public class DeviceRepositoryJpa implements DeviceRepositoryGateway {
                 .stream()
                 .map(DeviceMapper::toDomain)
                 .toList();
+    }
+
+    @Override
+    public Optional<DeviceModel> findById(UUID id) {
+        return springRepo.findById(id)
+                .map(DeviceMapper::toDomain);
     }
 
 }
